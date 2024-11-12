@@ -14,27 +14,31 @@ public class SpringDataJpaAppApplication {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext run = SpringApplication.run(SpringDataJpaAppApplication.class, args);
+		// StudentRepository bean = run.getBean(StudentRepository.class);
 		EmployeeRepository employeeRepository = run.getBean(EmployeeRepository.class);
-		// Employees employees1 = new Employees(7, "garudan", "employee", 10000);
-		// Employees employees2 = new Employees(8, "Anjanayan", "employee", 12000);
-		// Employees employees3 = new Employees(9, "suriyan", "employee", 13000);
-		// Employees employees4 = new Employees(10, "chandran", "employee", 14000);
-		// Employees employees5 = new Employees(11, "Natachitram", "employee", 14000);
-		// List<Employees> employeesList = Arrays.asList(employees1, employees2, employees3, employees4, employees5);
-		// employeeRepository.saveAll(employeesList);
-		List<Employees> findByDesignation = employeeRepository.findByDesignation("employee");
-		System.out.println("Custom Query to get the employee designation");
-		findByDesignation.forEach(System.out::println);
-		List<Employees> findBySalaryGreaterThanEqual = employeeRepository.findBySalaryGreaterThanEqual(10000);
-		System.out.println("Custom Query to get the employee salary");
-		findBySalaryGreaterThanEqual.forEach(System.out::println);
-		List<Employees> findBySalaryLessThanEqual = employeeRepository.findBySalaryLessThanEqual(10000);
-		System.out.println("Custom Query to get the employee salary");
-		findBySalaryLessThanEqual.forEach(System.out::println);
-		List<Employees> findByDesignationAndSalaryGreaterThanEqual = employeeRepository
-				.findByDesignationAndSalaryGreaterThanEqual("employee", 13000);
-		System.out.println("Custom Query to get the employee based on designation & salary");
-		findByDesignationAndSalaryGreaterThanEqual.forEach(System.out::println);
+
+		/*
+		 * Pagination COncept PageRequest pageRequest = PageRequest.of(0, 5); org.springframework.data.domain.Page<Student>
+		 * findAll = bean.findAll(pageRequest); List<Student> content = findAll.getContent();
+		 * content.forEach(System.out::println);
+		 */
+
+		/*
+		 * soring Concept List<Student> findAll = bean.findAll(Sort.by("standard").descending());
+		 * findAll.forEach(System.out::println);
+		 */
+
+		/*
+		 * Example or QBE COncept Employees employees = new Employees(); employees.setDesignation("employee");
+		 * 
+		 * Example<Employees> example = Example.of(employees); List<Employees> list = employeeRepository.findAll(example);
+		 * list.forEach(System.out::println);
+		 */
+		// employeeRepository.deleteEmployee(11);
+		// employeeRepository.updateEmployee(8, "Associate");
+		employeeRepository.insertEmployee(11, "Garudan", "Associate", 20000);
+		List<Employees> list = employeeRepository.findAll();
+		list.forEach(System.out::println);
 	}
 
 }
