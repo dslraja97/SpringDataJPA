@@ -9,14 +9,17 @@
 				<tr>
 					<td>ProductId:</td>
 					<td><input type="text" th:field="*{pId}"/></td>
+					<td th:if="${#fields.hasErrors('pId')}" th:errors="*{pId}">Id is Required </td>
 				</tr>
 				<tr>
 					<td>Name:</td>
 					<td><input type="text" th:field="*{name}"/></td>
+					<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name is Required </td>
 				</tr>
 				<tr>
 					<td>Price:</td>
 					<td><input type="text" th:field="*{price}"/></td>
+					<td th:if="${#fields.hasErrors('price')}" th:errors="*{price}">price is Required </td>
 				</tr>
 				<tr>
 					<td><input type="submit" value="submit"/></td>
